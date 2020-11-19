@@ -1,14 +1,12 @@
 <template>
   <div>
     <el-dialog :title="info.title" :visible.sync="info.isshow" @closed="closed">
-      <!-- 商品规格 -->
+      <!-- 一级分类 -->
       <el-form :model="user">
-        <el-form-item label="规格名称" label-width="120px">
-          <el-input
-            v-model="user.specsname"
-            autocomplete="off"
-            placeholder="请输入规格名称"
-          ></el-input>
+        <el-form-item label="一级分类" label-width="120px">
+          <el-select v-model="user.status">
+            <el-option label=手机通讯 value="1"></el-option>
+          </el-select>
         </el-form-item>
         <!-- 规格属性 -->
         <el-form-item
@@ -82,8 +80,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters({
-    })
+    ...mapGetters({})
   },
   methods: {
     ...mapActions({
@@ -129,7 +126,6 @@ export default {
           // 重新请求总数
           this.reqCount();
           // console.log(this.user, this.attrArr);
-
         }
       });
     },

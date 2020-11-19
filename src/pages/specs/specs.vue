@@ -4,9 +4,8 @@
     <el-button type="primary" @click="willAdd">添加</el-button>
 
     <!-- table -->
-    <!-- 19.将list传递给list.vue 组件 -->
     <!-- $event接收子组件传过来的数据 -->
-    <v-list   @edit="edit($event)"></v-list>
+    <v-list @edit="edit($event)"></v-list>
 
     <!-- 分页 -->
     <!-- 50.分页 
@@ -17,13 +16,13 @@
     <el-pagination
       background
       layout="prev, pager, next"
-      :total="10"
-      :page-size="2"
+      :total="this.total"
+      :page-size="this.size"
       @current-change="changePage"
     >
     </el-pagination>
     <!-- 弹框 -->
-    <v-form :info="info"  ref="form"></v-form>
+    <v-form :info="info" ref="form"></v-form>
   </div>
 </template>
 
@@ -40,7 +39,7 @@ export default {
       info: {
         isshow: false,
         title: ""
-      },
+      }
     };
   },
   components: {
@@ -49,12 +48,15 @@ export default {
   },
   computed: {
     ...mapGetters({
-
+      total: "specs/total",
+      size: "specs/size"
     })
   },
   methods: {
     ...mapActions({
-            reqList:'specs/reqList'
+      reqList: "specs/reqList",
+      reqCount:'specs/reqCount',
+      changePage:'specs/changePage'
     }),
     willAdd() {
       this.info.isshow = true;
@@ -67,27 +69,15 @@ export default {
       this.info.title = "编辑商品规格";
       this.$refs.form.getOne(id);
     },
-    // 获取总数
-    getCount() {
-      reqUserCount().then(res => {
-        this.total = res.data.list[0].total;
-      });
-    },
-    //54.页码发生了修改
-    changePage(page) {
-      this.page = page;
-      this.init();
-    },
+
     newInit() {
-      this.init();
+      this.reqList();
       this.getCount();
     }
   },
   mounted() {
-    // 请求数据库的列表数据，一进来就渲染列表
-    // 为什么？因为重新进这个借口，数据库有数据，他就渲染，当跳转到别的页面在跳转到当前页就要渲染
     this.reqList();
-    this.getCount();
+    this.reqCount();
   }
 };
 </script>

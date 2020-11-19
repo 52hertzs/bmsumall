@@ -10,17 +10,39 @@
       default-expand-all
       :tree-props="{ children: 'children', hasChildren: 'hasChildren' }"
     >
-      <!-- 规格编号 -->
-      <el-table-column prop="id" label="规格编号" sortable></el-table-column>
-      <!-- 规格名称 -->
-      <el-table-column prop="specsname" label="规格名称" sortable>
+      <!-- 商品编号 -->
+      <el-table-column prop="id" label="商品编号" sortable></el-table-column>
+      <!-- 商品名称 -->
+      <el-table-column prop="specsname" label="商品名称" sortable>
       </el-table-column>
-      <!-- 规格属性 -->
-      <el-table-column label="规格属性" sortable>
+      <!-- 商品价格 -->
+      <el-table-column prop="specsname" label="商品价格" sortable>
+      </el-table-column>
+      <!-- 市场价格 -->
+      <el-table-column prop="specsname" label="市场价格" sortable>
+      </el-table-column>
+      <!-- 图片 -->
+      <el-table-column label="图片">
         <template slot-scope="scope">
-          <el-tag v-for="item in scope.row.attrs" :key="item">{{
-            item
-          }}</el-tag>
+          <img :src="$imgPre + scope.row.img" alt="" />
+        </template>
+      </el-table-column>
+      <!-- 是否新品 -->
+      <el-table-column label="是否新品">
+        <template slot-scope="scope">
+          <el-button type="primary" v-if="scope.row.status === 1"
+            >是</el-button
+          >
+          <el-button type="danger" v-else>否</el-button>
+        </template>
+      </el-table-column>
+      <!-- 是否热卖 -->
+      <el-table-column label="是否热卖">
+        <template slot-scope="scope">
+          <el-button type="primary" v-if="scope.row.status === 1"
+            >是</el-button
+          >
+          <el-button type="danger" v-else>否</el-button>
         </template>
       </el-table-column>
       <!-- 状态 -->
@@ -62,7 +84,7 @@ export default {
   methods: {
     ...mapActions({
       reqList: "specs/reqList",
-      reqCount:'specs/reqCount'
+      reqCount: "specs/reqCount"
     }),
     edit(id) {
       this.$emit("edit", id);

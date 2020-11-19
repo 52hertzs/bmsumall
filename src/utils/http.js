@@ -345,7 +345,7 @@ export const reqspecsUpdate = user => {
 export const reqspecsCount = user => {
   
   return axios({
-    url: baseUrl + "/api/specslist",
+    url: baseUrl + "/api/specscount",
     method: "get"
   });
 };
