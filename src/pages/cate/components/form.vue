@@ -44,6 +44,7 @@
             :show-file-list="false"
             :on-change="changeFile2"
           >
+          <!-- element ui中  action是上传的一个地址，而我们要把文件上传到我们的后所以不填 -->
             <img v-if="imgUrl" :src="imgUrl" class="avatar" />
             <i v-else class="el-icon-plus avatar-uploader-icon"></i>
           </el-upload>

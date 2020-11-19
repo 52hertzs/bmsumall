@@ -285,3 +285,68 @@ export const reqcateUpdate = cate => {
     data: d
   });
 };
+
+// =========== 商品分类开始====================
+
+// =========== 商品规格开始====================
+
+// 8.添加 
+export const reqspecsAdd = user => {
+
+  return axios({
+    url: baseUrl + "/api/specsadd",
+    method: "post",
+    data: qs.stringify(user)
+  });
+};
+
+//18.列表 p={page:xx,size:xx} 
+export const reqspecsList = p => {
+  return axios({
+    url: baseUrl + "/api/specslist",
+    method: "get",
+    params: p
+  });
+};
+
+//26.删除
+export const reqspecsDel = id => {
+  return axios({
+    url: baseUrl + "/api/specsdelete",
+    method: "post",
+    data: qs.stringify({
+      id: id
+    })
+  });
+};
+// 33.详情
+export const reqspecsDetail = id => {
+  return axios({
+    url: baseUrl + "/api/specsinfo",
+    method: "get",
+    params: {
+      id: id
+    }
+  });
+};
+
+// 38.修改
+export const reqspecsUpdate = user => {
+  
+  return axios({
+    url: baseUrl + "/api/specsedit",
+    method: "post",
+    data: qs.stringify(user)
+  });
+};
+
+// 总数
+
+export const reqspecsCount = user => {
+  
+  return axios({
+    url: baseUrl + "/api/specslist",
+    method: "get"
+  });
+};
+// =========== 商品规格结束====================

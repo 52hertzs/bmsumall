@@ -6,8 +6,8 @@ import actions from './actions'
 //  处理数据的
 import{state,mutations,getters} from './mutations';
 //
-import order from './modules/order'
 import cate from './modules/cate'
+import specs from './modules/specs'
 
 export default new Vuex.Store({
     state,
@@ -15,7 +15,7 @@ export default new Vuex.Store({
     getters,
     actions,
     modules:{
-        order,
-        cate
+        cate,
+        specs
     }
 })
