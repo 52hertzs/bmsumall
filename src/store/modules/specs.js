@@ -30,11 +30,14 @@ const mutations = {
 const actions = {
   //  发起请求
 
-  reqList(context) {
+  reqList(context,bool) {
     // 发起请求，成功之后，修改list
     // 这里的size是每次要请求回来的的数据
     //  p={page:xx,size:xx}
-    reqspecsList({ page: context.state.page, size: context.state.size }).then(
+
+    // 修改条件
+    let params =bool?{}:{ page: context.state.page, size: context.state.size }
+    reqspecsList(params).then(
       res => {
         let list = res.data.list ? res.data.list : [];
         //处理删除末尾页在后一条数据的bug问题

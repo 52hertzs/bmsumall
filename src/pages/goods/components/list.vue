@@ -2,10 +2,11 @@
   <div>
     <!-- 有下一层数据就写children -->
     <!-- 请求回来的数据有id号(后台自动添加号的)所以 -->
+          <!-- row-key="id" -->
     <el-table
       :data="list"
       style="width: 100%;margin-bottom: 20px;"
-      row-key="id"
+
       border
       default-expand-all
       :tree-props="{ children: 'children', hasChildren: 'hasChildren' }"
@@ -104,7 +105,7 @@ export default {
     }
   },
   mounted() {
-    this.reqList();
+    // this.reqList();
   }
 };
 </script>

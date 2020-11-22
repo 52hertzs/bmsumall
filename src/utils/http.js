@@ -5,12 +5,11 @@ import { errorAlert } from "./alert";
 import store from "../store";
 // 引入 router
 import router from "../router";
-import Vue from 'vue'
-
+import Vue from "vue";
 
 // 开发环境使用8000,本地地址，后面的是处理图片地址 localhost3000是后台的地址
 let baseUrl = "/aa";
-Vue.prototype.$imgPre='http://localhost:3000'
+Vue.prototype.$imgPre = "http://localhost:3000";
 
 // 生产环境打包
 // let baseUrl ='';
@@ -271,7 +270,7 @@ export const reqcateDetail = id => {
 // 38.修改
 export const reqcateUpdate = cate => {
   let d = new FormData();
-    /*
+  /*
     d.append("name",12)
     d.append("img",file)
     d.append("age",20)
@@ -290,9 +289,8 @@ export const reqcateUpdate = cate => {
 
 // =========== 商品规格开始====================
 
-// 8.添加 
+// 8.添加
 export const reqspecsAdd = user => {
-
   return axios({
     url: baseUrl + "/api/specsadd",
     method: "post",
@@ -300,7 +298,7 @@ export const reqspecsAdd = user => {
   });
 };
 
-//18.列表 p={page:xx,size:xx} 
+//18.列表 p={page:xx,size:xx}
 export const reqspecsList = p => {
   return axios({
     url: baseUrl + "/api/specslist",
@@ -332,7 +330,6 @@ export const reqspecsDetail = id => {
 
 // 38.修改
 export const reqspecsUpdate = user => {
-  
   return axios({
     url: baseUrl + "/api/specsedit",
     method: "post",
@@ -343,10 +340,75 @@ export const reqspecsUpdate = user => {
 // 总数
 
 export const reqspecsCount = user => {
-  
   return axios({
     url: baseUrl + "/api/specscount",
     method: "get"
   });
 };
 // =========== 商品规格结束====================
+
+// =========== 商品管理====================
+// 8.添加
+export const reqgoodsAdd = user => {
+  let d = FormData();
+  for (let i in user) {
+    d.append(i, user[i]);
+  }
+  return axios({
+    url: baseUrl + "/api/goodsadd",
+    method: "post",
+    data: d
+  });
+};
+
+//18.列表 p={page:xx,size:xx}
+export const reqgoodsList = p => {
+  return axios({
+    url: baseUrl + "/api/goodslist",
+    method: "get",
+    params: p
+  });
+};
+
+//26.删除
+export const reqgoodsDel = id => {
+  return axios({
+    url: baseUrl + "/api/goodsdelete",
+    method: "post",
+    data: qs.stringify({
+      id: id
+    })
+  });
+};
+// 33.详情
+export const reqgoodsDetail = id => {
+  return axios({
+    url: baseUrl + "/api/goodsinfo",
+    method: "get",
+    params: {
+      id: id
+    }
+  });
+};
+
+// 38.修改
+export const reqgoodsUpdate = user => {
+  let d = FormData();
+  for (let i in user) {
+    d.append(i, user[i]);
+  }
+  return axios({
+    url: baseUrl + "/api/goodsedit",
+    method: "post",
+    data: d
+  });
+};
+
+// 总数
+
+export const reqgoodsCount = user => {
+  return axios({
+    url: baseUrl + "/api/goodscount",
+    method: "get"
+  });
+};

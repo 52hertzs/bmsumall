@@ -240,6 +240,7 @@ export default {
 </script>
 
 <style scoped lang="stylus">
+// 原生样式
 .myupload {
   position: relative;
   width: 100px;

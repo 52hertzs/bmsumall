@@ -76,7 +76,7 @@ export default {
     }
   },
   mounted() {
-    this.reqList();
+    // this.reqList();
     this.reqCount();
   }
 };
